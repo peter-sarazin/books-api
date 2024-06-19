@@ -1,0 +1,103 @@
+openapi: 3.0.2
+info:
+  title: Books API
+  description: This is the Books API.  It provides RESTful operations for Books.
+  version: 1.0.0-oas3
+  contact:
+    name: Peter Sarazin
+    url: http://www.petersarazin.com
+    email: peter.sarazin@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths:
+  /author/{authorId}:
+    get:
+      summary: retrieves the author for a given authorId
+      description: retrieve author by authorId
+      parameters:
+        - in: path
+          name: authorId
+          schema:
+            type: integer
+          description: the id of an author
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Author"
+        '404':
+          description: An author with this id does not exist
+        '500':
+          description: Internal Server Error
+    post:
+      summary: creates a new author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Author"
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
+    put:
+      summary: creates a new author
+      parameters:
+        - in: path
+          name: authorId
+          schema:
+            type: integer
+          description: the id of an author
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Author"
+      responses:
+        '200':
+          description: Updated
+        '404':
+          description: An author with this id does not exist
+        '500':
+          description: Internal Server Error
+    delete:
+      summary: deletes an author
+      parameters:
+        - in: path
+          name: authorId
+          schema:
+            type: integer
+          description: the id of an author
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Author"
+        '404':
+          description: An author with this id does not exist          
+        '500':
+          description: Internal Server Error     
+
+definitions:
+  Author:
+    type: object
+    properties:
+      authorId:
+        type: integer
+      firstName:
+        type: string
+      middleName:
+        type: string
+      lastName:
+        type: string

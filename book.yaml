@@ -1,50 +1,3 @@
-openapi: 3.0.3
-
-info:
-  title: Books API
-  description: This is the Books API.  It provides RESTful operations for Books.
-  version: 1.0.0
-  contact:
-    name: Peter Sarazin
-    url: http://www.petersarazin.com
-    email: peter.sarazin@gmail.com
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-paths:
-  /author/{authorId}:
-    get:
-      summary: retrieve author by authorId
-      operationId: getAuthor
-      description: retrieve author by authorId
-      parameters:
-        - in: path
-          name: authorId
-          schema:
-            type: integer
-          description: the id of an author
-          required: true
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  authorId:
-                    type: integer
-                  first_name:
-                    type: string
-                  middle_name:
-                    type: string
-                  last_name:
-                    type: string
-        404:
-          description: An author with this id does not exist
-        500:
-          description: Internal Server Error
-      
   /book/{bookId}:
     get:
       summary: retrieve book by bookId
@@ -118,9 +71,3 @@ paths:
           description: book with this id does not exist
         500:
           description: Internal Server Error          
-        
-                
-                      
-                
-                
-      
