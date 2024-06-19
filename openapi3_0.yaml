@@ -14,6 +14,8 @@ info:
 tags:
   - name: author
     description: Operations related to an author
+  - name: publisher
+    description: Operations related to a publisher
 paths:
   /author:
     post:
@@ -29,6 +31,8 @@ paths:
       responses:
         '201':
           description: Created
+        '400':
+          description: Bad Request
         '500':
           description: Internal Server Error
   /author/{authorId}:
@@ -115,6 +119,8 @@ paths:
       responses:
         '201':
           description: Created
+        '400':
+          description: Bad Request          
         '500':
           description: Internal Server Error    
   /publisher/{publisherId}:
