@@ -15,6 +15,22 @@ tags:
   - name: author
     description: Operations related to an author
 paths:
+  /author:
+    post:
+      tags:
+        - author
+      summary: creates a new author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Author"
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
   /author/{authorId}:
     get:
       tags:
@@ -39,25 +55,10 @@ paths:
           description: An author with this id does not exist
         '500':
           description: Internal Server Error
-    post:
-      tags:
-        - author
-      summary: creates a new author
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/definitions/Author"
-      responses:
-        '201':
-          description: Created
-        '500':
-          description: Internal Server Error
     put:
       tags:
         - author
-      summary: creates a new author
+      summary: updates an existing author
       parameters:
         - in: path
           name: authorId
@@ -81,7 +82,7 @@ paths:
     delete:
       tags:
         - author
-      summary: deletes an author
+      summary: deletes an existing author
       parameters:
         - in: path
           name: authorId
@@ -99,6 +100,92 @@ paths:
         '404':
           description: An author with this id does not exist          
         '500':
+          description: Internal Server Error
+  /publisher:
+    post:
+      tags:
+        - publisher
+      summary: creates a new publisher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Publisher"
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error    
+  /publisher/{publisherId}:
+    get:
+      tags:
+        - publisher
+      summary: retrieves the publisher for a given authorId
+      description: retrieve publisher by publisherId
+      parameters:
+        - in: path
+          name: publisherId
+          schema:
+            type: integer
+          description: the id of an publisher
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Publisher"
+        '404':
+          description: An publisher with this id does not exist
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - publisher
+      summary: updates an existing publisher
+      parameters:
+        - in: path
+          name: publisherId
+          schema:
+            type: integer
+          description: the id of an publisher
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Publisher"
+      responses:
+        '200':
+          description: Updated
+        '404':
+          description: A publisher with this id does not exist       
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - publisher
+      summary: deletes an existing publisher
+      parameters:
+        - in: path
+          name: publisherId
+          schema:
+            type: integer
+          description: the id of an existing publisher
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Publisher"
+        '404':
+          description: A publisher with this id does not exist          
+        '500':
           description: Internal Server Error     
 
 definitions:
@@ -112,4 +199,13 @@ definitions:
       middleName:
         type: string
       lastName:
+        type: string
+  Publisher:
+    type: object
+    properties:
+      publisherId:
+        type: integer
+      name: 
+        type: string
+      url:
         type: string
